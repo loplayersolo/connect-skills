@@ -18,8 +18,8 @@ import { styles } from "./styles";
 export function Login() {
   const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("aluno@teste.com");
+  const [password, setPassword] = useState("123@senac");
 
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ export function Login() {
       if (email.toLowerCase() === "aluno@teste.com" && password === "123@senac") {
         console.log("Login simulado com sucesso!");
         // // Quando quiser, pode redirecionar:
-        // router.replace("/(tabs)");
+        router.replace("/(tabs)/home");
       } else {
         setLoginError("E-mail ou senha inválidos!");
       }
