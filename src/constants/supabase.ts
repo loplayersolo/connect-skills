@@ -1,0 +1,2 @@
+export const SUPA_URL = "https://pjecdzvhpczpwgotgbjl.supabase.co";
+export const SUPA_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqZWNkenZocGN6cHdnb3RnYmpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA0NzQ4MzksImV4cCI6MjA3NjA1MDgzOX0.3Iig209T7pU182Lxss44xydZUVGnN9lOPpGL1NHkI64";

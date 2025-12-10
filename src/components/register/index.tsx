@@ -1,9 +1,9 @@
+import { supabase } from "@/lib/supabase";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -11,7 +11,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { styles } from "./styles";
 
@@ -42,16 +42,21 @@ export function Register() {
     try {
       setLoading(true);
       setRegisterError("");
-
-      // Simulação de cadastro
-      await new Promise((r) => setTimeout(r, 800));
-
-      if (email.toLowerCase() === "aluno@teste.com") {
-        setRegisterError("E-mail já cadastrado!");
-      } else {
-        Alert.alert("Cadastro realizado!", "Bem-vindo(a), " + name + "!");
-        router.push("./(auth)/login"); // redireciona para o login
+      const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: { nome: name.trim() }
+        },
+      });
+      if (error) {
+        setRegisterError(error.message || "Falha ao cadastrar. Verifique a validação dos campos!");
+        return;
       }
+      router.replace("/(auth)"); // Alterar redirecionamento para /(auth)/datauser
+      return data;
+    } catch (e: any) {
+      setRegisterError(e.message || "Falha ao cadastrar. Tente novamente.");
     } finally {
       setLoading(false);
     }
